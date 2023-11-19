@@ -63,9 +63,8 @@ if __name__ == '__main__':
 
     # Separate features and labels
     X_train = train_data.drop('label', axis=1)
-    y_train = train_data['label']
     X_test = test_data.drop('label', axis=1)
-    y_test = test_data['label']
+    y_test = test_data['label'].to_numpy()
 
     feature_columns = [col for col in X_train.columns if col != 'label']
     scaler = MinMaxScaler()
@@ -84,7 +83,7 @@ if __name__ == '__main__':
 
     model.eval()
 
-    X_test_tensor = torch.tensor(X_test.values).float()
+    X_test_tensor = torch.tensor(X_test.to_numpy()).float().unsqueeze(1)
 
     predictions = []
     labels = []
