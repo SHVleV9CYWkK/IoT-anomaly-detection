@@ -87,18 +87,25 @@ if __name__ == '__main__':
 
     model.eval()
 
-    X_test_tensor = torch.tensor(X_test.values).float().unsqueeze(1)
+    X_test_tensor = torch.tensor(X_test.values).float()
 
-    model.eval()
-    outputs = model(X_test_tensor)
+    predictions = []
+    labels = []
+
     with torch.no_grad():
-        probabilities = torch.sigmoid(outputs)
-        predictions = (probabilities > 0.5).float()
+        for i in range(len(X_test_tensor)):
+            sample = X_test_tensor[i].unsqueeze(0)
 
-        # Calculate indicators
-        acc = accuracy_score(y_test, predictions)
-        precision = precision_score(y_test, predictions)
-        recall = recall_score(y_test, predictions)
-        f1 = f1_score(y_test, predictions)
+            output = model(sample)
+            probability = torch.sigmoid(output)
+            prediction = (probability > 0.5).float()
+            predictions.append(prediction.item())
 
-        print("Accuracy: ", acc, ", Precision: ", precision, ", Recall: ", recall, ", F1: ", f1)
+            labels.append(y_test[i])
+
+    acc = accuracy_score(labels, predictions)
+    precision = precision_score(labels, predictions)
+    recall = recall_score(labels, predictions)
+    f1 = f1_score(labels, predictions)
+
+    print("Accuracy: ", acc, ", Precision: ", precision, ", Recall: ", recall, ", F1: ", f1)
