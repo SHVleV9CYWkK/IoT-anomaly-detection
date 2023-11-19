@@ -2,10 +2,7 @@ import pandas as pd
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.preprocessing import MinMaxScaler
 import torch
-from torch import optim
 import torch.nn as nn
-from torch.utils.data import TensorDataset
-from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 
@@ -93,6 +90,7 @@ if __name__ == '__main__':
     labels = []
 
     with torch.no_grad():
+        pbar = tqdm(total=len(X_test_tensor))
         for i in range(len(X_test_tensor)):
             sample = X_test_tensor[i].unsqueeze(0)
 
@@ -102,6 +100,8 @@ if __name__ == '__main__':
             predictions.append(prediction.item())
 
             labels.append(y_test[i])
+            pbar.update(1)
+        pbar.close()
 
     acc = accuracy_score(labels, predictions)
     precision = precision_score(labels, predictions)
@@ -109,3 +109,4 @@ if __name__ == '__main__':
     f1 = f1_score(labels, predictions)
 
     print("Accuracy: ", acc, ", Precision: ", precision, ", Recall: ", recall, ", F1: ", f1)
+
