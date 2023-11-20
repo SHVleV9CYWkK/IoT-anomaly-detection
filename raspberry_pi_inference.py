@@ -32,43 +32,14 @@ class LightweightLSTM(nn.Module):
 
 if __name__ == '__main__':
     seed = 42
-    data = pd.read_csv('IoT_Modbus.csv')
-    data['datetime'] = pd.to_datetime(data['date'] + ' ' + data['time'])
-    data['year'] = data['datetime'].dt.year
-    data['month'] = data['datetime'].dt.month
-    data['day'] = data['datetime'].dt.day
-    data['hour'] = data['datetime'].dt.hour
-    data['minute'] = data['datetime'].dt.minute
-    data['second'] = data['datetime'].dt.second
-    data['dayofweek'] = data['datetime'].dt.dayofweek
+    train_data = pd.read_csv('train_dataset.csv')
+    test_data = pd.read_csv('test_dataset.csv')
 
-    # Sort the data by datetime
-    data = data.sort_values(by='datetime')
-
-    # Drop the original date, time, and timestamp columns
-    data.drop(['date', 'time', 'datetime', 'type'], axis=1, inplace=True)
-
-    # Adjust feature order
-    order = ['year', 'month', 'day', 'hour', 'minute', 'second', 'dayofweek', 'FC1_Read_Input_Register',
-             'FC2_Read_Discrete_Value', 'FC3_Read_Holding_Register', 'FC4_Read_Coil', 'label']
-    data = data[order].astype('int32')
-
-    # Calculate split points
-    split_idx = int(len(data) * 0.8)
-
-    # Split the data set, keeping order
-    train_data = data.iloc[:split_idx]
-    test_data = data.iloc[split_idx:]
-
-    # Separate features and labels
-    X_train = train_data.drop('label', axis=1)
-    X_test = test_data.drop('label', axis=1)
-    y_test = test_data['label'].to_numpy()
-
-    feature_columns = [col for col in X_train.columns if col != 'label']
-    scaler = MinMaxScaler()
-    X_train[feature_columns] = scaler.fit_transform(X_train[feature_columns]).astype('float32')
-    X_test[feature_columns] = scaler.transform(X_test[feature_columns]).astype('float32')
+    # Separate the features and labels
+    X_train = train_data.drop('label', axis=1).astype('float32')
+    y_train = train_data['label']
+    X_test = test_data.drop('label', axis=1).astype('float32')
+    y_test = test_data['label']
 
     features_num = X_train.shape[1]
     hidden_neurons_num = 512
