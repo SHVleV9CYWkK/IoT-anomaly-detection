@@ -3,6 +3,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from sklearn.preprocessing import MinMaxScaler
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from tqdm import tqdm
 
 
@@ -26,7 +27,7 @@ class LightweightLSTM(nn.Module):
         last_time_step_out = lstm_out[:, -1, :]
 
         # Output layer
-        x = self.linear_1(last_time_step_out)
+        x = F.relu(self.linear_1(last_time_step_out))
         out = self.linear_2(x)
         return out
 
