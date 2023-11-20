@@ -16,8 +16,7 @@ class LightweightLSTM(nn.Module):
         # Define the LSTM layer
         self.lstm = nn.LSTM(input_size, adjusted_hidden_size, num_layers=num_layers, batch_first=True)
 
-        self.linear_1 = nn.Linear(adjusted_hidden_size, hidden_size)
-        self.linear_2 = nn.Linear(hidden_size, output_size)
+        self.fc = nn.Linear(adjusted_hidden_size, output_size)
 
     def forward(self, x):
         # LSTM layer
@@ -27,8 +26,7 @@ class LightweightLSTM(nn.Module):
         last_time_step_out = lstm_out[:, -1, :]
 
         # Output layer
-        x = F.relu(self.linear_1(last_time_step_out))
-        out = self.linear_2(x)
+        out = self.fc(last_time_step_out)
         return out
 
 
@@ -80,7 +78,7 @@ if __name__ == '__main__':
 
     model = LightweightLSTM(features_num, hidden_neurons_num, output_neurons_num, lstm_num_layers, multiplier)
 
-    model.load_state_dict(torch.load('model_2023-11-19_17-16-41.pt'))
+    model.load_state_dict(torch.load('model_2023-11-20_00-57-22.pt'))
 
     model.eval()
 
