@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     model = LightweightLSTM(features_num, hidden_neurons_num, output_neurons_num, lstm_num_layers, multiplier)
 
-    model.load_state_dict(torch.load('model_2023-11-20_00-57-22.pt'))
+    model.load_state_dict(torch.load('save_model/model_2023-11-20_00-57-22.pt'))
 
     model.eval()
 
