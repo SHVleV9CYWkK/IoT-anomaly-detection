@@ -74,12 +74,18 @@ if __name__ == '__main__':
 
     with torch.no_grad():
         pbar = tqdm(total=len(X_test_tensor))
+        positive_samples_detected = 0
         for i in range(len(X_test_tensor)):
             sample = X_test_tensor[i].unsqueeze(0)
 
             output = model(sample)
             probability = torch.sigmoid(output)
             prediction = (probability > 0.5).float()
+            if prediction.item() == 1:
+                positive_samples_detected += 1
+                pbar.set_description(f"Detected positive samples: {positive_samples_detected}")
+
+
             predictions.append(prediction.item())
 
             labels.append(y_test[i])
@@ -91,5 +97,5 @@ if __name__ == '__main__':
     recall = recall_score(labels, predictions)
     f1 = f1_score(labels, predictions)
 
-    print("Accuracy: ", acc, ", Precision: ", precision, ", Recall: ", recall, ", F1: ", f1)
+    print("\nAccuracy: ", acc, ", Precision: ", precision, ", Recall: ", recall, ", F1: ", f1)
 
