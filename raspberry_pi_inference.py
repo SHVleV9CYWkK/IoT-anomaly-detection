@@ -37,9 +37,12 @@ if __name__ == '__main__':
     np.random.seed(seed)
     random.seed(seed)
 
-    parser = argparse.ArgumentParser(description='Run LSTM model with optional quantization.')
+    parser = argparse.ArgumentParser(description='Run LSTM model with optional quantization and CPU core limitation.')
     parser.add_argument('--quantize', action='store_true', help='Apply quantization to the model')
+    parser.add_argument('--cores', type=int, default=1, help='Number of CPU cores to use')
     args = parser.parse_args()
+
+    torch.set_num_threads(args.cores)
 
     train_data = pd.read_csv('train_dataset.csv')
     test_data = pd.read_csv('test_dataset.csv')
@@ -84,7 +87,6 @@ if __name__ == '__main__':
             if prediction.item() == 1:
                 positive_samples_detected += 1
                 pbar.set_description(f"Detected positive samples: {positive_samples_detected}")
-
 
             predictions.append(prediction.item())
 
