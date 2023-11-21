@@ -3,7 +3,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 
 if __name__ == '__main__':
-    data = pd.read_csv('IoT_Modbus.csv')
+    data = pd.read_csv('datasets/IoT_Modbus.csv')
     data['datetime'] = pd.to_datetime(data['date'] + ' ' + data['time'])
     data['year'] = data['datetime'].dt.year
     data['month'] = data['datetime'].dt.month
@@ -44,6 +44,6 @@ if __name__ == '__main__':
     train_data = pd.concat([X_train, y_train], axis=1)
     test_data = pd.concat([X_test, y_test], axis=1)
 
-    train_data.to_csv('train_dataset.csv', index=False)
-    test_data.to_csv('test_dataset.csv', index=False)
+    train_data.to_csv('datasets/train_dataset.csv', index=False)
+    test_data.to_csv('datasets/test_dataset.csv', index=False)
 

@@ -44,8 +44,8 @@ if __name__ == '__main__':
 
     torch.set_num_threads(args.cores)
 
-    train_data = pd.read_csv('train_dataset.csv')
-    test_data = pd.read_csv('test_dataset.csv')
+    train_data = pd.read_csv('datasets/train_dataset.csv')
+    test_data = pd.read_csv('datasets/test_dataset.csv')
 
     # Separate the features and labels
     X_train = train_data.drop('label', axis=1).astype('float32')
