@@ -11,22 +11,13 @@ from tqdm import tqdm
 class LightweightLSTM(nn.Module):
     def __init__(self, input_size, hidden_size, output_size, num_layers=1, width_multiplier=1.0):
         super(LightweightLSTM, self).__init__()
-        # Adjust hidden size based on the width multiplier
         adjusted_hidden_size = int(hidden_size * width_multiplier)
-
-        # Define the LSTM layer
         self.lstm = nn.LSTM(input_size, adjusted_hidden_size, num_layers=num_layers, batch_first=True)
-
         self.fc = nn.Linear(adjusted_hidden_size, output_size)
 
     def forward(self, x):
-        # LSTM layer
         lstm_out, _ = self.lstm(x)
-
-        # Take the output of the last time step
         last_time_step_out = lstm_out[:, -1, :]
-
-        # Output layer
         out = self.fc(last_time_step_out)
         return out
 
@@ -39,6 +30,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Run LSTM model with optional quantization and CPU core limitation.')
     parser.add_argument('--quantize', action='store_true', help='Apply quantization to the model')
+    parser.add_argument('--without_width_multiplier', action='store_true', help='Do not apply width_multiplier to model')
     parser.add_argument('--cores', type=int, default=1, help='Number of CPU cores to use')
     args = parser.parse_args()
 
@@ -61,7 +53,7 @@ if __name__ == '__main__':
 
     model = LightweightLSTM(features_num, hidden_neurons_num, output_neurons_num, lstm_num_layers, multiplier)
 
-    model.load_state_dict(torch.load('save_model/model_2023-11-20_00-57-22.pt'))
+    model.load_state_dict(torch.load('' if args.without_width_multiplier else ''))
 
     model.eval()
 
