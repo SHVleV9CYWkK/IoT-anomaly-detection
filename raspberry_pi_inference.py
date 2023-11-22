@@ -1,4 +1,7 @@
 import argparse
+from datetime import datetime
+import os
+
 import numpy as np
 import pandas as pd
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
@@ -30,12 +33,14 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Run LSTM model with optional quantization and CPU core limitation.')
     parser.add_argument('--quantize', action='store_true', help='Apply quantization to the model')
-    parser.add_argument('--without_width_multiplier', action='store_true', help='Do not apply width_multiplier to model')
+    parser.add_argument('--without_width_multiplier', action='store_true',
+                        help='Do not apply width_multiplier to model')
     parser.add_argument('--cores', type=int, default=1, help='Number of CPU cores to use')
     args = parser.parse_args()
 
     torch.set_num_threads(args.cores)
 
+    print("Loading dataset")
     train_data = pd.read_csv('datasets/train_dataset.csv')
     test_data = pd.read_csv('datasets/test_dataset.csv')
 
@@ -44,6 +49,7 @@ if __name__ == '__main__':
     y_train = train_data['label']
     X_test = test_data.drop('label', axis=1).astype('float32')
     y_test = test_data['label']
+    print("Loaded dataset")
 
     features_num = X_train.shape[1]
     hidden_neurons_num = 512
@@ -51,11 +57,13 @@ if __name__ == '__main__':
     lstm_num_layers = 2
     multiplier = 0.5
 
+    print("Loading model")
     model = LightweightLSTM(features_num, hidden_neurons_num, output_neurons_num, lstm_num_layers, multiplier)
 
     model.load_state_dict(torch.load('model_lstm_2023-11-22_22-07-05_without_width_multiplier.pt'
                                      if args.without_width_multiplier else
                                      'mode_lstml_2023-11-20_00-57-22.pt'))
+    print("Loaded model")
 
     model.eval()
 
@@ -68,7 +76,9 @@ if __name__ == '__main__':
 
     predictions = []
     labels = []
+    positive_samples_indices = []
 
+    print("Start inferring")
     with torch.no_grad():
         pbar = tqdm(total=len(X_test_tensor))
         positive_samples_detected = 0
@@ -80,6 +90,7 @@ if __name__ == '__main__':
             prediction = (probability > 0.5).float()
             if prediction.item() == 1:
                 positive_samples_detected += 1
+                positive_samples_indices.append(i)
                 pbar.set_description(f"Detected positive samples: {positive_samples_detected}")
 
             predictions.append(prediction.item())
@@ -95,3 +106,13 @@ if __name__ == '__main__':
 
     print("\nAccuracy: ", acc, ", Precision: ", precision, ", Recall: ", recall, ", F1: ", f1)
 
+    print("Logging")
+    save_folder = "log"
+    if not os.path.exists(save_folder):
+        os.makedirs(save_folder)
+    current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    log_filename = f"positive_samples_log_{current_time}.csv"
+    full_path = os.path.join(save_folder, log_filename)
+    positive_samples = test_data.iloc[positive_samples_indices]
+    positive_samples.to_csv(full_path, index=False)
+    print("Positive samples log saved.")
