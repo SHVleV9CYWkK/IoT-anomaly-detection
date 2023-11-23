@@ -55,7 +55,7 @@ if __name__ == '__main__':
     hidden_neurons_num = 512
     output_neurons_num = 1
     lstm_num_layers = 2
-    multiplier = 0.5
+    multiplier = 1 if args.without_width_multiplier else 0.5
 
     print("Loading model")
     model = LightweightLSTM(features_num, hidden_neurons_num, output_neurons_num, lstm_num_layers, multiplier)
