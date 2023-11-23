@@ -6,6 +6,12 @@ In recent years in Australia, the usage of IoT devices has greatly increased, sm
 IoT stands for Internet of Things which refers to a network of interconnected physical devices, vehicles, appliances, and other objects that are embedded with sensors, software, and connectivity, allowing them to collect and exchange data. These devices can communicate and interact with each other over the internet or other networks without requiring direct human intervention. The devices were enabled to collect, analyse, and share data to improve efficiency, productivity, and convenience in various aspects. That
 
 This project aims for IoT Network Attack or Anomaly Detection. The attack or anomaly 
+
+
+The team performed the model performance in Raspberry Pi inference, which can be reflected as an IoT device. 
+
+Mlp model has worse performance compared with RNN model, as the recall is too small showing that the reflection of the positive sample - the attack or anomaly, is too ineffective.
+
 ## Environment Requirements
 ### Training Environment
 - Python == 3.10
