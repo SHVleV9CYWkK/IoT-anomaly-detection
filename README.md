@@ -44,6 +44,7 @@ IoT datasets were logged in log and CSV files, where Modbus sensors were used to
 
 ## Data Visualisation
 ![Alt text](image.png)
+![Alt text](image-1.png)
 
 ## Data Preprocessing
 
