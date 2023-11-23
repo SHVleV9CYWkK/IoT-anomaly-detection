@@ -60,9 +60,10 @@ if __name__ == '__main__':
     print("Loading model")
     model = LightweightLSTM(features_num, hidden_neurons_num, output_neurons_num, lstm_num_layers, multiplier)
 
-    model.load_state_dict(torch.load('model_lstm_2023-11-22_22-07-05_without_width_multiplier.pt'
-                                     if args.without_width_multiplier else
-                                     'model_lstm_2023-11-23_11-01-34.pt'))
+    model_path = os.path.join("save_model", 'model_lstm_2023-11-22_22-07-05_without_width_multiplier.pt'
+                                            if args.without_width_multiplier else 'model_lstm_2023-11-23_11-01-34.pt')
+
+    model.load_state_dict(torch.load(model_path))
     print("Loaded model")
 
     model.eval()
