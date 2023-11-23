@@ -50,7 +50,6 @@ As shown in the graph, there are two lines that represent the times the IOT devi
 
 ![Alt text](image-1.png)
 
-As shown in the graph, it is obviously that different types of cyberattacks do not happen every hour. The backdoor does not appear at 3 to 5 am, while injection only happens at 7 to 10 am. The xss does not happen a lot of times, but it seems like it prefers to appear at night or early morning. The password is similar to the backdoor which do not happen between 3 am to 1 pm.
 
 ## Data Preprocessing
 
