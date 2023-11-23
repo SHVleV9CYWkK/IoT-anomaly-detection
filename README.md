@@ -29,6 +29,22 @@
 
 ## Dataset
 
+IoT datasets were logged in log and CSV files, where Modbus sensors were used to capture their telemetry data.
+
+### Description Of Features
+
+1.  `date`: Date of logging IoT telemetry data
+2.  `time`: Time of logging IoT telemetry data
+3.  `FC1_Read_Input_Register`: Modbus function code that is responsible for reading an input register 
+4.  `FC2_Read_Discrete_Value`: Modbus function code that is in charge of  reading a discrete value 
+5. `FC3_Read_Holding_Register`: Modbus function code that is responsible for reading a holding register 
+6. `FC4_Read_Coil`: Modbus function code that is responsible for reading a coil 
+7. `label`: Tag normal and attack records, where 0 indicates normal and 1 indicates attacks  
+8. `type`:  Tag attack categories, such as normal, DoS, DDoS and backdoor attacks, and normal records 
+
+## Data Visualisation
+![Alt text](image.png)
+
 ## Data Preprocessing
 
 The key to data preprocessing in this project is to accurately process and transform time series data, enabling the LSTM to effectively learn and recognize time dependencies and patterns. Below are the detailed preprocessing steps:
