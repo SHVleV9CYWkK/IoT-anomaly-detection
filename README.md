@@ -1,7 +1,11 @@
 # IoT Network Attack or Anomaly Detection
 
 ## Introduction
+In recent years in Australia, the usage of IoT devices has greatly increased, smart IoT devices can range from simple household appliances like smart furniture and lighting systems to more complex machinery and industrial equipment. With these increases in usage, IoT network attack or anomaly has become a more prominent issue worthy of attention, which leads to the importance of attack or anomaly detection.
 
+IoT stands for Internet of Things which refers to a network of interconnected physical devices, vehicles, appliances, and other objects that are embedded with sensors, software, and connectivity, allowing them to collect and exchange data. These devices can communicate and interact with each other over the internet or other networks without requiring direct human intervention. The devices were enabled to collect, analyse, and share data to improve efficiency, productivity, and convenience in various aspects. That
+
+This project aims for IoT Network Attack or Anomaly Detection. The attack or anomaly 
 ## Environment Requirements
 ### Training Environment
 - Python == 3.10
