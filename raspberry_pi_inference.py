@@ -62,7 +62,7 @@ if __name__ == '__main__':
 
     model.load_state_dict(torch.load('model_lstm_2023-11-22_22-07-05_without_width_multiplier.pt'
                                      if args.without_width_multiplier else
-                                     'mode_lstml_2023-11-20_00-57-22.pt'))
+                                     'model_lstm_2023-11-23_11-01-34.pt'))
     print("Loaded model")
 
     model.eval()
