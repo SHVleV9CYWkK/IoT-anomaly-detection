@@ -44,6 +44,7 @@ IoT datasets were logged in log and CSV files, where Modbus sensors were used to
 
 ## Data Visualisation
 ![Alt text](image.png)
+As shown in the graph, there are two lines that represent the times the IOT device has been attacked or run as normal in each hour. The blue line represents the device running as usual, while the orange line represents the device that has been attacked. As the time goes by, the number of attack times are going up and down. There is the lowest point at 4 and 6 am, while high-frequency attacks happen at midnight and 9 am. From around 3 am to 7 am, attack times are at the lowest level in the whole day. But after 7 am, the line starts to rise and tends to flatten after 3 pm. In the night, the line starts to undulate again and reaches to highest level at mid-night.
 ![Alt text](image-1.png)
 
 ## Data Preprocessing
