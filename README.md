@@ -1,16 +1,17 @@
 # IoT Network Attack or Anomaly Detection
 
 ## Introduction
-In recent years in Australia, the usage of IoT devices has greatly increased, smart IoT devices can range from simple household appliances like smart furniture and lighting systems to more complex machinery and industrial equipment. With these increases in usage, IoT network attack or anomaly has become a more prominent issue worthy of attention, which leads to the importance of attack or anomaly detection.
+In recent years in Australia, the usage of IoT devices has greatly increased, smart IoT devices can range from simple household appliances like smart furniture and lighting systems to more complex machinery and industrial equipment. With these increases in usage, IoT network attack or anomaly has become a more prominent issue worthy of attention, which leads to the importance of attack or anomaly detection. Recent Optus and ANZ incidence indicates the importance of detection.
 
-IoT stands for Internet of Things which refers to a network of interconnected physical devices, vehicles, appliances, and other objects that are embedded with sensors, software, and connectivity, allowing them to collect and exchange data. These devices can communicate and interact with each other over the internet or other networks without requiring direct human intervention. The devices were enabled to collect, analyse, and share data to improve efficiency, productivity, and convenience in various aspects. That
+IoT stands for Internet of Things which refers to a network of interconnected physical devices, vehicles, appliances, and other objects that are embedded with sensors, software, and connectivity, allowing them to collect and exchange data. These devices can communicate and interact with each other over the internet or other networks without requiring direct human intervention. The devices were enabled to collect, analyse, and share data to improve efficiency, productivity, and convenience in various aspects.
 
 This project aims for IoT Network Attack or Anomaly Detection. The attack or anomaly 
 
 
-The team performed the model performance in Raspberry Pi inference, which can be reflected as an IoT device. 
+The team performed the model performance in Raspberry Pi inference, which can be reflected as an IoT device. The MLP model- a lightweight Multi-Layer Perceptron (MLP) network designed for handling various data-driven problems, was developed and the RNN model - a recurrent neural network with LSTM units, was developed to perform Attack or Anomaly Detection.
 
-Mlp model has worse performance compared with RNN model, as the recall is too small showing that the reflection of the positive sample - the attack or anomaly, is too ineffective.
+The MLP model has a worse performance compared with the RNN model, as the recall is too small showing that the reflection of the positive sample - the attack or anomaly, is too ineffective, with the recall of 0.322927 leading to the F1 score of 0.47614. Whereas the RNN model applies a width multiplier producing an accuracy of 0.932798, with a recall of 0.639914, which is much higher than the MLP model. 
+Quantization was applied during this project, and the team first converted data points from float into int in order to increase the performance efficiency, then converted those back into float, which will result in some accuracy loss from 0.932798 to 0.931945 but the efficiency of model performance was highly increased from 8mins 50 seconds into 3mins 25 seconds.
 
 ## Environment Requirements
 ### Training Environment
