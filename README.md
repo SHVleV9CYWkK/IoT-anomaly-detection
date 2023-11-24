@@ -13,7 +13,7 @@ With the development of IoT, fog computing has emerged as an important concept, 
 ### Team Contributions
 1. We successfully deployed and ran the model on a Raspberry Pi, simulating the performance in resource-limited IoT devices or local routers or servers based on fog computing environments.
 2. Through [quantization](https://arxiv.org/abs/2103.13630) processing and the application of [width multipliers](https://arxiv.org/abs/1704.04861), we enabled the Raspberry Pi to efficiently run a lightweight recurrent neural network (RNN) model.
-3. We developed a lightweight RNN model integrated with LSTM units, used for detecting network attacks and abnormal traffic, providing accurate detection capabilities while maintaining high efficiency.
+3. We developed a lightweight RNN model integrated with LSTM units for detecting network attacks and abnormal traffic, providing accurate detection capabilities on an IoT network traffic dataset while maintaining high efficiency.
 4. To draw comparisons, we designed a lightweight Multilayer Perceptron (MLP) model as a baseline. The results showed that the lightweight RNN model with LSTM units is more robust than MLP model in detecting future data.
 
 
