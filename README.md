@@ -44,9 +44,9 @@ With the development of IoT, fog computing has emerged as an important concept, 
 
 ## Dataset
 
-IoT datasets were logged in log and CSV files, where Modbus sensors were used to capture their telemetry data.
+IoT datasets were logged in log and CSV files, where Modbus sensors were used to capture their telemetry data. This dataset is one of the [ToN_IoT](https://research.unsw.edu.au/projects/toniot-datasets) datasets developed by the University of New South Wales Canberra in Australia. It serves as a comprehensive resource for AI-based cybersecurity research, encompassing a variety of IoT and Industrial IoT data for applications such as intrusion detection and threat analysis.
 
-### Description Of Features
+### Description of Features
 
 1.  `date`: Date of logging IoT telemetry data
 2.  `time`: Time of logging IoT telemetry data
