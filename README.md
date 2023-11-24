@@ -153,4 +153,28 @@ In our IoT device anomaly detection project, the steps of saving and inferring t
 
 Through these steps, we ensure that the model can not only accurately detect abnormal behaviors on IoT devices but also adapt to various computing environments, from resource-limited individual devices to more complex fog computing architectures. This flexibility is crucial for implementing effective network security strategies.
 
+
 ## Model Performance
+
+To ensure the fairness of our experiments, we used the same training and test datasets. Notably, the time features in the test dataset follow those in the training dataset, which was done to validate the model's effectiveness in detecting future data. Additionally, to test the model performance in an actual resource-constrained environment, we configured the Raspberry Pi to use only one core. This is because IoT devices often need to reserve computing resources for their own services, and we also wanted to assess how the inference devices would perform under extreme pressure, i.e., the extent of network data stress they can handle.
+
+### Comparison Between RNN and Baseline Model
+Our analysis showed that the baseline Multilayer Perceptron (MLP) model underperformed compared to the Recurrent Neural Network (RNN) with Long Short-Term Memory (LSTM) units. In our task, we focused on the model's ability to classify positive samples (i.e., attacks or anomalies). The MLP model's recall rate was only 0.322927, resulting in a low F1 score of 0.47614, indicating its ineffectiveness in identifying positive samples. In contrast, the RNN model achieved an accuracy of 0.932798 and a recall rate of 0.639914, demonstrating superior performance in detecting future data.
+
+### Impact of Width Multipliers and Quantization
+1. In the scenario without width multipliers and quantization, the model was the most resource-intensive. In this case, the model took 26 minutes and 53 seconds to infer 57,439 samples, processing about 36 network traffic data per second. This inference speed is clearly insufficient for models deployed on local servers or routers.
+
+![Alt text](infer_result_image/No%20quantization%20+%20No%20width%20multiplier.png)
+
+2. The inference speed of the model using width multipliers was significantly improved, requiring only 8 minutes and 50 seconds to complete all samples, processing about 108 network traffic data per second. Moreover, the model performed best in this test, validating the effectiveness of width multipliers in enhancing inference speed on constrained devices.
+
+![Alt text](infer_result_image/No%20quantization%20+%20width%20multiplier.png)
+
+3. The quantized model's inference speed was even faster, taking only 7 minutes and 22 seconds to process all network traffic data, which equals processing about 130 data per second. This demonstrates that model quantization can significantly accelerate the inference process.
+
+![Alt text](infer_result_image/quantization%20+%20no%20width%20multiplier.png)
+
+4. When combining width multipliers and model quantization, the model's performance was impressively efficient. It took only 3 minutes and 25 seconds to infer all test dataset samples, processing about 279 data per second. Although there was a slight performance drop (about 0.1%), the model still retained fairly good performance. Compared to the initial model, which processed 36 data per second, this improvement to 279 data per second is substantial.
+
+![Alt text](infer_result_image/quantization%20+%20width%20multiplier.png)
+
