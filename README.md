@@ -9,8 +9,9 @@ This project aims for IoT Network Attack or Anomaly Detection. There were a few 
 
 The team performed the model performance in Raspberry Pi inference, which can be reflected as an IoT device. The MLP model- a lightweight Multi-Layer Perceptron (MLP) network designed for handling various data-driven problems, was developed and the RNN model - a recurrent neural network with LSTM units, was developed to perform Attack or Anomaly Detection.
 
-The MLP model has a worse performance compared with the RNN model, as the recall is too small showing that the reflection of the positive sample - the attack or anomaly, is too ineffective, with the recall of 0.322927 leading to the F1 score of 0.47614. Whereas the RNN model applies a width multiplier producing an accuracy of 0.932798, with a recall of 0.639914, which is much higher than the MLP model. 
-Quantization was applied during this project, and the team first converted data points from float into int in order to increase the performance efficiency, then converted those back into float, which will result in some accuracy loss from 0.932798 to 0.931945 but the efficiency of model performance was highly increased from 8mins 50 seconds into 3mins 25 seconds.
+The MLP model has a worse performance compared with the RNN model, as the recall is too small showing that the reflection of the positive sample - the attack or anomaly, is too ineffective, with the recall of 0.322927 leading to the F1 score of 0.47614.
+Inspired by MobileNet, width multipliers are used to adjust the number of hidden units in the LSTM layers the RNN model applies a width multiplier producing an accuracy of 0.932798, with a recall of 0.639914, which is much higher than the MLP model. 
+Quantization was applied in order to improve the runtime of the model, and the team first converted data points from float into int in order to increase the performance efficiency, then converted those back into float, which resulted in some accuracy loss from 0.932798 to 0.931945 but the efficiency of model performance was highly increased from 8mins 50 seconds into 3mins 25 seconds.
 
 
 ## Environment Requirements
