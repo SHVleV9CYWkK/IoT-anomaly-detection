@@ -59,15 +59,15 @@ IoT datasets were logged in log and CSV files, where Modbus sensors were used to
 
 ## Data Visualisation
 
-![Alt text](image.png)
+![Alt text](data_visualisation_image/image.png)
 
 As shown in the graph, there are two lines that represent the times the IOT device has been attacked or run as normal in each hour. The blue line represents the device running as usual, while the orange line represents the device that has been attacked. As the time goes by, the number of attack times are going up and down. There is the lowest point at 4 and 6 am, while high-frequency attacks happen at midnight and 9 am. From around 3 am to 7 am, attack times are at the lowest level in the whole day. But after 7 am, the line starts to rise and tends to flatten after 3 pm. In the night, the line starts to undulate again and reaches to highest level at mid-night.
 
-![Alt text](image-1.png)
+![Alt text](data_visualisation_image/image-1.png)
 
 As shown in the graph, it is obviously that different types of cyberattacks do not happen every hour. The backdoor does not appear at 3 to 5 am, while injection only happens at 7 to 10 am. The xss does not happen a lot of times, but it seems like it prefers to appear at night or early morning. The password is similar to the backdoor which do not happen between 3 am to 1 pm.
 
-![Alt text](image-2.png)
+![Alt text](data_visualisation_image/image-2.png)
 
 According to the graph, the xss and scanning have a tiny proportion in the whole attack functions. The most common way of cyberattack in this database is backdoor, the second place is password.
 
