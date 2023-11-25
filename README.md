@@ -178,3 +178,5 @@ Our analysis showed that the baseline Multilayer Perceptron (MLP) model underper
 
 ![Alt text](infer_result_image/quantization%20+%20width%20multiplier.png)
 
+## Youtube Video
+https://youtu.be/EYTayQcbrfA  
